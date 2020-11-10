@@ -17,5 +17,5 @@ public interface UserService {
     
     boolean verifyUser(String username, String password);
     
-    void returnAllUsers();
+    int returnAllUsers();
 }

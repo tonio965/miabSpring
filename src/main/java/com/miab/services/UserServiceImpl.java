@@ -83,11 +83,12 @@ public class UserServiceImpl implements UserService, HashService {
 	}
 
 	@Override
-	public void returnAllUsers() {
+	public int returnAllUsers() {
 		List<User> list = database.findAll(null);
 		for(User u : list ) {
 			System.out.println(u.toString());
 		}
+		return list.size();
 		
 	}
 	

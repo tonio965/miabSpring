@@ -1,22 +1,12 @@
 package com.miab.miab;
-
 import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.miab.model.User;
-import com.miab.services.AppplicationService;
 import com.miab.services.UserService;
 
-@SpringBootTest
-class MiabApplicationTests {
-
-	@MockBean
-	private AppplicationService appService;
-	
+public class UserServiceTest {
 	
 	@Autowired
 	private UserService userService;
@@ -24,18 +14,19 @@ class MiabApplicationTests {
 	@Test
 	void addUserToDb() {
 		int i = userService.returnAllUsers();
-		userService.createUser("test1", "test1", "test1", "test1");
+		User u = new User("test1", "test1", "test1", "test1");
 		int j = userService.returnAllUsers();
-		assertThat(j).isGreaterThan(i);
+		assertThat(j>i).isEqualTo(true);
 	}
 	
 	@Test
 	void deletesUser() {
-		
-		userService.createUser("test2", "test2", "test2", "test2");
 		int i = userService.returnAllUsers();
-		userService.deleteUser("test2");
+		User u = new User("test2", "test2", "test2", "test2");
 		int j = userService.returnAllUsers();
-		assertThat(j).isLessThan(i);
+		assertThat(j<i).isEqualTo(true);
 	}
+	
+
+
 }
