@@ -14,3 +14,15 @@ alter table user add constraint FKfa83d3bb616ectwmy9qd0hqlu foreign key (group_i
 org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'groupname' (GRUP: ""NAME"" INTEGER NOT NULL)"
 Data conversion error converting "'groupname' (GRUP: ""NAME"" INTEGER NOT NULL)"; SQL statement:
 insert into grup (name, id) values (?, ?) [22018-200]
+2020-12-01 21:26:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'tomek' (GRUP: ""NAME"" INTEGER NOT NULL)"
+Data conversion error converting "'tomek' (GRUP: ""NAME"" INTEGER NOT NULL)"; SQL statement:
+insert into grup (name, id) values (?, ?) [22018-200]
+2020-12-01 21:38:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'mane' (GRUP: ""NAME"" INTEGER NOT NULL)"
+Data conversion error converting "'mane' (GRUP: ""NAME"" INTEGER NOT NULL)"; SQL statement:
+insert into grup (name, id) values (?, ?) [22018-200]
+2020-12-01 21:59:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'name' (GRUP: ""NAME"" INTEGER NOT NULL)"
+Data conversion error converting "'name' (GRUP: ""NAME"" INTEGER NOT NULL)"; SQL statement:
+insert into grup (name, id) values (?, ?) [22018-200]

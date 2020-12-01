@@ -2,6 +2,7 @@ package com.miab.services;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import com.miab.model.User;
 import com.miab.repository.*;
 
 @Service
+@Transactional
 public class AppplicationService {
 	
 	
@@ -58,9 +60,10 @@ public class AppplicationService {
 			System.out.println("4 verify user");
 			System.out.println("5 find user");
 			System.out.println("6 add grup");
-			System.out.println("7 find all grup");
+			System.out.println("7 find all grups");
 			System.out.println("8 find all from 1 grup");
-			System.out.println("8 add to grup");
+			System.out.println("9 add to grup");
+			System.out.println("10 remove user from grup");
 			System.out.println("select option:");
 			
 			int decision = intScanner.nextInt();
@@ -116,8 +119,8 @@ public class AppplicationService {
 					System.out.println("=========================");
 					System.out.println("username: ");
 					String urname = stringScanner.nextLine();
-//					User u = userService.findUser(urname);
-//					System.out.println(u.toString());
+					User usrr = repository.findUserByUsername(urname);
+						System.out.println(usrr.toString());
 					break;
 					
 				case 6:
@@ -140,24 +143,33 @@ public class AppplicationService {
 					
 				case 8:
 					System.out.println("all from group: ");
-					System.out.println("gid: ");
-					int gidd = intScanner.nextInt();
-					List<User> usrs = repository.findByGrup(gidd);
-					for(User ur : usrs) {
+					System.out.println("group name: ");
+					String namegroup = stringScanner.nextLine();
+					Grup grupp = groupRepository.findGrupByName(namegroup);
+					for(User ur : grupp.getUsers()) {
 						System.out.println(ur.toString());
 					}
 					break;
 				case 9:
 					System.out.println("add to grup: ");
-					System.out.println("usrid: ");
-					int usrid = intScanner.nextInt();
-					System.out.println("gid: ");
-					int giddd = intScanner.nextInt();
-					Optional<User> us = repository.findById((long) usrid);
-					Optional<Grup> gg = groupRepository.findById((long) giddd);
-//					for(User ur : usrss) {
-//						System.out.println(ur.toString());
-//					}
+					System.out.println("usr name: ");
+					String usrnm = stringScanner.nextLine();
+					System.out.println("g id: ");
+					int groupid = intScanner.nextInt();
+					User us = repository.findUserByUsername(usrnm);
+					Grup gg = groupRepository.getOne(groupid);
+					gg.getUsers().add(us);
+					break;
+					
+				case 10:
+					System.out.println("remove from grup: ");
+					System.out.println("usr name: ");
+					String usrnme = stringScanner.nextLine();
+					System.out.println("g id: ");
+					int groupidd = intScanner.nextInt();
+					User uss = repository.findUserByUsername(usrnme);
+					Grup ggg = groupRepository.getOne(groupidd);
+					ggg.getUsers().remove(uss);
 					break;
 				
 			}

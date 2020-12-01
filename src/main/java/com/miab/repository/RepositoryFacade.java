@@ -12,7 +12,7 @@ import com.miab.model.*;
 
 public interface RepositoryFacade extends JpaRepository<User,Long>{
 	
-    List<User> findUserByUsername(String username);
+    User findUserByUsername(String username);
     
     @Transactional
     Long deleteByUsername(String username);

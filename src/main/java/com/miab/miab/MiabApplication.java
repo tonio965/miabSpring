@@ -33,7 +33,7 @@ public class MiabApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		LOG.log(Level.INFO, "run");
-		applicationService.runApp();
+		applicationService.runApp(); 
 		
 	}
 
