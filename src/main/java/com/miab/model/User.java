@@ -1,13 +1,23 @@
 package com.miab.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import org.springframework.stereotype.Component;
 
-@Component
+@Entity
 public class User {
 	
 	
 	
 	//fields
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int id;
+	
     private String username;
     
     private String password;
@@ -16,11 +26,23 @@ public class User {
     
     private String email;
     
+    @ManyToOne
+    private Grup grup;
+    
+    
     
    
     
     
     //constructors
+
+	public Grup getGroup() {
+		return grup;
+	}
+
+	public void setGroup(Grup grup) {
+		this.grup = grup;
+	}
 
 	public User() {
 		super();
@@ -38,6 +60,14 @@ public class User {
 	
 	
 	//getters and setters
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;

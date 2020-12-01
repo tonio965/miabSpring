@@ -1,14 +1,16 @@
 package com.miab.services;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.miab.model.Grup;
 import com.miab.model.User;
-import com.miab.repository.RepositoryFacadeImpl;
+import com.miab.repository.*;
 
 @Service
 public class AppplicationService {
@@ -21,6 +23,12 @@ public class AppplicationService {
 	
 	@Autowired
 	UserServiceImpl userService;
+	
+	@Autowired
+	RepositoryFacade repository;
+	
+	@Autowired
+	GroupFacade groupRepository;
 	
 	//constructors
 	
@@ -49,7 +57,12 @@ public class AppplicationService {
 			System.out.println("3 return all users");
 			System.out.println("4 verify user");
 			System.out.println("5 find user");
+			System.out.println("6 add grup");
+			System.out.println("7 find all grup");
+			System.out.println("8 find all from 1 grup");
+			System.out.println("8 add to grup");
 			System.out.println("select option:");
+			
 			int decision = intScanner.nextInt();
 			
 			switch(decision) {
@@ -64,20 +77,24 @@ public class AppplicationService {
 					String name = stringScanner.nextLine();
 					System.out.println("email: ");
 					String email = stringScanner.nextLine();
-					
-					userService.createUser(username, pw, name, email);
+					User u = new User(username, pw, name, email);
+					repository.save(u);
+//					userService.createUser(username, pw, name, email);
 					System.out.println("=========================");
 					break;
 					
 				case 2:
 					System.out.println("provide an username: ");
 					String cred = stringScanner.nextLine();
-					userService.deleteUser(cred);
+					repository.deleteByUsername(cred);
 					break;
 					
 				case 3:
 					System.out.println("all users: ");
-					userService.returnAllUsers();
+					List<User> users = repository.findAll();
+					for(User usr : users) {
+						System.out.println(usr.toString());
+					}
 					break;
 				
 				case 4:
@@ -86,8 +103,9 @@ public class AppplicationService {
 					String usrname = stringScanner.nextLine();
 					System.out.println("pw: ");
 					String pswrd = stringScanner.nextLine();
-					boolean verified = userService.verifyUser(usrname, pswrd);
-					if(verified)
+//					boolean verified = userService.verifyUser(usrname, pswrd);
+					User verified = repository.findByUsernameAndPassword(usrname, pswrd);
+					if(verified!=null)
 						System.out.println("user verified");
 					else {
 						System.out.println("user not verified");
@@ -98,8 +116,48 @@ public class AppplicationService {
 					System.out.println("=========================");
 					System.out.println("username: ");
 					String urname = stringScanner.nextLine();
-					User u = userService.findUser(urname);
-					System.out.println(u.toString());
+//					User u = userService.findUser(urname);
+//					System.out.println(u.toString());
+					break;
+					
+				case 6:
+					System.out.println("=========================");
+					System.out.println("gname: ");
+					String gname = stringScanner.nextLine();
+					System.out.println("gid: ");
+					int gid = intScanner.nextInt();
+					Grup g = new Grup(gid,gname);
+					groupRepository.save(g);
+					break;
+					
+				case 7:
+					System.out.println("all grups: ");
+					List<Grup> grups = groupRepository.findAll();
+					for(Grup gr : grups) {
+						System.out.println(gr.toString());
+					}
+					break;
+					
+				case 8:
+					System.out.println("all from group: ");
+					System.out.println("gid: ");
+					int gidd = intScanner.nextInt();
+					List<User> usrs = repository.findByGrup(gidd);
+					for(User ur : usrs) {
+						System.out.println(ur.toString());
+					}
+					break;
+				case 9:
+					System.out.println("add to grup: ");
+					System.out.println("usrid: ");
+					int usrid = intScanner.nextInt();
+					System.out.println("gid: ");
+					int giddd = intScanner.nextInt();
+					Optional<User> us = repository.findById((long) usrid);
+					Optional<Grup> gg = groupRepository.findById((long) giddd);
+//					for(User ur : usrss) {
+//						System.out.println(ur.toString());
+//					}
 					break;
 				
 			}
