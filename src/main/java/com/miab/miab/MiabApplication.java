@@ -16,25 +16,31 @@ import com.miab.services.AppplicationService;
 "com.miab.*"})
 @EnableJpaRepositories(basePackages = "com.miab.repository")
 @EntityScan(basePackages = "com.miab.model")
-public class MiabApplication implements CommandLineRunner {
+public class MiabApplication {
 
-	@Autowired
-	private AppplicationService applicationService;
-	
-	private static Logger LOG = Logger
-		      .getLogger(MiabApplication.class.getName());
+//	@Autowired
+//	private AppplicationService applicationService;
+//	
+//	private static Logger LOG = Logger
+//		      .getLogger(MiabApplication.class.getName());
+//	
+//	public static void main(String[] args) {
+//		LOG.log(Level.INFO, "start");
+//		SpringApplication.run(MiabApplication.class, args);
+//		LOG.log(Level.INFO, "finish");
+//	}
+//
+//	@Override
+//	public void run(String... args) throws Exception {
+//		LOG.log(Level.INFO, "run");
+//		applicationService.runApp(); 
+//		
+//	}
 	
 	public static void main(String[] args) {
-		LOG.log(Level.INFO, "start");
-		SpringApplication.run(MiabApplication.class, args);
-		LOG.log(Level.INFO, "finish");
-	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		LOG.log(Level.INFO, "run");
-		applicationService.runApp(); 
-		
+		SpringApplication.run(MiabApplication.class, args);
+
 	}
 
 }
