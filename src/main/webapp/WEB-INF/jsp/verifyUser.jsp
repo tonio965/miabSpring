@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>success</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h2> success: <a href="/">return</a></h2>
+
+      <form action = verifyUsr method="post">
+         username: <input type = "text" name = "username"/>
+         <br />
+         pw: <input type = "password" name = "password" />
+         <br />
+         <input type = "submit" value = "register" />
+      </form>
+
 </body>
 </html>

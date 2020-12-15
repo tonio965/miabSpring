@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.miab.model.*;
 
-public interface RepositoryFacade extends JpaRepository<User,Long>{
+public interface RepositoryFacade extends JpaRepository<User,Integer>{
 	
     User findUserByUsername(String username);
     

@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>success</title>
+<title>add group</title>
 </head>
 <body>
-	<h2> success: <a href="/">return</a></h2>
+
+      <form action = "addGrup" method="post">
+         group name: <input type = "text" name = "name"/>
+         <br />
+         <input type = "submit" value = "register" />
+      </form>
+
 </body>
 </html>

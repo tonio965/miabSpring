@@ -7,6 +7,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h2> user management</h2>
+	<a href="/browseUsers">browse users</a>
 	<a href="/addUserForm">add user</a>
+	<a href="/delete">delete user</a>
+	<a href="/edit">edit user</a>
+	
+	<br/>
+	<h2>group management</h2>
+	<a href="/browseGroups"> browse groups</a>
+	<a href="/addGroup"> add group</a>
+	<a href="/removeGroup"> remove group</a>
+	<a href="/addToGroup"> add user to group</a>
+	<a href="/removeFromGroup"> remove user from group</a>
+	<br/>
+	
+	<h2> verify user</h2>
+	<a href ="/verifyUser">verifyUser</a>
+	
+	
 </body>
 </html>
